@@ -1,0 +1,511 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume - Shiela Mae Aledro</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: "Poppins", Arial, sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    /* DOWNLOAD BUTTONS */
+    .download-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(135deg, #2c3e50, #34495e);
+      padding: 15px 20px;
+      z-index: 2000;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .download-btn, .print-btn {
+      border: none;
+      padding: 10px 22px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .download-btn {
+      background: white;
+      color: #2c3e50;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .download-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .print-btn {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .print-btn:hover {
+      background: white;
+      color: #2c3e50;
+    }
+
+    /* RESUME CONTAINER */
+    .resume-container {
+      max-width: 1100px;
+      margin: 80px auto 20px;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 30px;
+      padding: 40px;
+      background: white;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* LEFT COLUMN */
+    .left-column {
+      text-align: center;
+      border-right: 1px solid #e0e0e0;
+      padding-right: 30px;
+    }
+
+    .profile-pic {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 3px solid #2c3e50;
+      margin: 0 auto 20px;
+      object-fit: cover;
+      object-position: center 20%;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .left-column h3 {
+      font-size: 16px;
+      color: #2c3e50;
+      margin-bottom: 12px;
+      margin-top: 20px;
+      font-weight: 700;
+    }
+
+    .section-box {
+      background: #f9f9f9;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      border-left: 3px solid #2c3e50;
+    }
+
+    .section-title {
+      background: #2c3e50;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 3px;
+      font-weight: 700;
+      font-size: 12px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .section-box ul {
+      list-style: none;
+      text-align: left;
+    }
+
+    .section-box li {
+      font-size: 12px;
+      color: #555;
+      margin-bottom: 6px;
+      padding-left: 15px;
+      position: relative;
+    }
+
+    .section-box li:before {
+      content: "•";
+      color: #2c3e50;
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
+    .contact-info {
+      text-align: left;
+      font-size: 12px;
+      color: #555;
+      line-height: 1.8;
+    }
+
+    /* RIGHT COLUMN */
+    .right-column {
+      text-align: left;
+    }
+
+    .header h1 {
+      font-size: 38px;
+      color: #2c3e50;
+      margin-bottom: 3px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .header h2 {
+      font-size: 16px;
+      color: #555;
+      font-weight: 500;
+      margin-bottom: 15px;
+      letter-spacing: 0.5px;
+    }
+
+    .intro-text {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 20px;
+      line-height: 1.6;
+      text-align: justify;
+    }
+
+    .section {
+      margin-bottom: 18px;
+    }
+
+    .section-header {
+      background: #2c3e50;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 3px;
+      font-weight: 700;
+      font-size: 12px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: inline-block;
+    }
+
+    .job {
+      margin-bottom: 12px;
+    }
+
+    .job h3 {
+      color: #2c3e50;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+
+    .job-meta {
+      font-size: 11px;
+      color: #888;
+      margin-bottom: 5px;
+      font-style: italic;
+    }
+
+    .job p {
+      font-size: 11px;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    .education {
+      font-size: 11px;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .education strong {
+      color: #2c3e50;
+      display: block;
+      margin-bottom: 3px;
+      font-weight: 700;
+    }
+
+    .competencies {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      font-size: 11px;
+    }
+
+    .competency-item {
+      color: #555;
+      padding: 8px;
+      background: #f5f5f5;
+      border-radius: 3px;
+      border-left: 3px solid #2c3e50;
+      font-weight: 500;
+    }
+
+    .skill-item {
+      margin-bottom: 10px;
+    }
+
+    .skill-name {
+      font-size: 11px;
+      color: #2c3e50;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .skill-bar {
+      background: #e0e0e0;
+      border-radius: 3px;
+      overflow: hidden;
+      height: 6px;
+    }
+
+    .skill-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: #2c3e50;
+    }
+
+    /* PRINT STYLES */
+    @media print {
+      * { margin: 0; padding: 0; }
+      body { 
+        background: white; 
+        padding: 15mm;
+        font-size: 11px;
+        line-height: 1.4;
+      }
+      .download-bar { display: none !important; }
+      .resume-container { 
+        margin: 0 !important;
+        padding: 0 !important;
+        max-width: 100%;
+        display: block !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+      }
+      .left-column {
+        display: block !important;
+        width: 100%;
+        border: none !important;
+        border-bottom: 1px solid #e0e0e0;
+        padding: 0 0 15px 0 !important;
+        margin: 0 0 15px 0 !important;
+        text-align: center;
+      }
+      .profile-pic {
+        width: 140px !important;
+        height: 140px !important;
+        margin: 0 auto 10px auto !important;
+      }
+      .section-box {
+        display: none !important;
+      }
+      .right-column {
+        display: block !important;
+        width: 100%;
+        margin: 0 !important;
+      }
+      .header {
+        margin-bottom: 12px;
+        text-align: center;
+        border-bottom: 2px solid #2c3e50;
+        padding-bottom: 8px;
+      }
+      .header h1 {
+        font-size: 26px;
+        margin-bottom: 2px;
+      }
+      .header h2 {
+        font-size: 13px;
+        color: #888;
+      }
+      .intro-text {
+        margin-bottom: 10px;
+        font-size: 11px;
+        text-align: left;
+      }
+      .section {
+        page-break-inside: avoid;
+        margin-bottom: 10px;
+      }
+      .section-header {
+        background: #2c3e50 !important;
+        color: white !important;
+        padding: 6px 10px !important;
+        margin-bottom: 8px;
+        font-size: 11px;
+      }
+      .job {
+        page-break-inside: avoid;
+        margin-bottom: 10px;
+      }
+      .job h3 {
+        font-size: 12px;
+        margin-bottom: 2px;
+      }
+      .job-meta {
+        font-size: 10px;
+        color: #888;
+        margin-bottom: 4px;
+      }
+      .competencies {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .competency-item {
+        font-size: 11px;
+        padding: 6px;
+      }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .resume-container { 
+        grid-template-columns: 1fr;
+      }
+      .left-column {
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+        padding-right: 0;
+        padding-bottom: 30px;
+        margin-bottom: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="download-bar">
+    <button class="download-btn" onclick="downloadPDF()">📥 Download as PDF</button>
+    <button class="print-btn" onclick="printResume()">🖨️ Print Resume</button>
+  </div>
+
+  <div class="resume-container">
+    <!-- LEFT COLUMN -->
+    <div class="left-column">
+      <img src="p1.jpg" alt="Shiela Mae Aledro" class="profile-pic">
+      
+      <div class="section-box">
+        <div class="section-title">About Me</div>
+        <p style="font-size: 11px; color: #666; text-align: justify;">
+          Creative graphic designer with passion for branding, invitations, and publication design. Specialized in transforming ideas into compelling visual solutions.
+        </p>
+      </div>
+
+      <div class="section-box">
+        <div class="section-title">Contact</div>
+        <div class="contact-info">
+          <div style="margin-bottom: 8px;">📱 +63 947 551 5836</div>
+          <div style="margin-bottom: 8px;">📧 shielamaechubby100987@gmail.com</div>
+          <div>📍 Davao City</div>
+        </div>
+      </div>
+
+      <div class="section-box">
+        <div class="section-title">Language</div>
+        <ul>
+          <li>English</li>
+          <li>Tagalog</li>
+          <li>Visaya</li>
+        </ul>
+      </div>
+
+      <div class="section-box">
+        <div class="section-title">Expertise</div>
+        <ul>
+          <li>Branding & Logo</li>
+          <li>Invitations Design</li>
+          <li>Publication Layout</li>
+          <li>Leadership</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="right-column">
+      <div class="header">
+        <h1>SHIELA MAE ALEDRO</h1>
+        <h2>Creative Graphic Designer</h2>
+      </div>
+
+      <p class="intro-text">
+        A visual storyteller and problem-solver who blends aesthetics with purpose to craft compelling designs. Skilled in transforming ideas into impactful visuals across various media. I believe good design connects people and tells meaningful stories.
+      </p>
+
+      <div class="section">
+        <div class="section-header">Experience</div>
+        <div class="job">
+          <h3>CoffeeAtYellowHaus – Davao City</h3>
+          <p class="job-meta">2007 - current</p>
+          <p>Working at a coffee shop taught me how to connect—with people, with stories, and with the quiet rhythm of everyday life. It's where I learned that creativity often starts with a simple cup and a conversation.</p>
+        </div>
+        <div class="job">
+          <h3>Artisan Paperie – Davao City</h3>
+          <p class="job-meta">Assistant | 2009 - 2025</p>
+          <p>Working with Artisan Paperie taught me the value of patience and precision. The beauty lies in the smallest details—the weight of the paper, the curve of a letter, the story behind a design.</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">Education</div>
+        <div class="education">
+          <strong>St. John Paul II College of Davao</strong>
+          <div>Bachelor of Science in Information Technology</div>
+          <div style="color: #999; font-size: 10px; margin-top: 3px;">2023 - 2027</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">Core Competencies</div>
+        <div class="competencies">
+          <div class="competency-item">Branding & Logo Design</div>
+          <div class="competency-item">Invitations & Stationery</div>
+          <div class="competency-item">Publication Layout</div>
+          <div class="competency-item">Social Media Graphics</div>
+          <div class="competency-item">Project Management</div>
+          <div class="competency-item">Leadership</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">Skills</div>
+        <div class="skill-item">
+          <div class="skill-name">Design Process – 85%</div>
+          <div class="skill-bar"><div class="skill-bar-fill" style="width: 85%;"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-name">Project Management – 80%</div>
+          <div class="skill-bar"><div class="skill-bar-fill" style="width: 80%;"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function downloadPDF() {
+      const element = document.querySelector(".resume-container");
+      const opt = {
+        margin: 10,
+        filename: "Shiela-Mae-Aledro-Resume.pdf",
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { orientation: "portrait", unit: "mm", format: "a4" }
+      };
+      html2pdf().set(opt).from(element).save();
+    }
+
+    function printResume() {
+      window.print();
+    }
+  </script>
+</body>
+</html>

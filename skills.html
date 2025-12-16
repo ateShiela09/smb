@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills - Shiela Mae Aledro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .skills-page {
+            min-height: 100vh;
+            padding-top: 120px;
+            padding-bottom: 60px;
+            background: var(--background-light);
+        }
+
+        .skills-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .skills-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .skills-header h1 {
+            font-size: 3rem;
+            color: var(--accent-blue);
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .skills-header p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Design Expertise Section */
+        .skills-section {
+            margin-bottom: 80px;
+        }
+
+        .skills-section-title {
+            font-size: 2rem;
+            color: var(--accent-blue);
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .skills-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff69b4, #40e0d0);
+            border-radius: 2px;
+        }
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .expertise-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--accent-blue);
+        }
+
+        .expertise-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(47, 82, 73, 0.15);
+            border-left-color: #ff69b4;
+        }
+
+        .expertise-card h3 {
+            font-size: 1.3rem;
+            color: var(--accent-blue);
+            margin-bottom: 10px;
+        }
+
+        .expertise-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Tools Section */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .tool-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .tool-card:hover {
+            transform: scale(1.08) translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .tool-icon {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .tool-card:nth-child(1) .tool-icon {
+            color: #a259ff;
+        }
+
+        .tool-card:nth-child(2) .tool-icon {
+            color: #e34c26;
+        }
+
+        .tool-card:nth-child(3) .tool-icon {
+            color: #31a8ff;
+        }
+
+        .tool-card:nth-child(4) .tool-icon {
+            color: #00dcc0;
+        }
+
+        .tool-card:hover .tool-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        .tool-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent-blue);
+            margin-bottom: 8px;
+        }
+
+        .tool-description {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Dark Mode */
+        body.dark-mode .expertise-card,
+        body.dark-mode .tool-card {
+            background: #2c2c2c;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .expertise-card h3,
+        body.dark-mode .tool-name {
+            color: #40e0d0;
+        }
+
+        body.dark-mode .expertise-card p,
+        body.dark-mode .tool-description {
+            color: #b0b0b0;
+        }
+
+        body.dark-mode .skills-page {
+            background: #1a1a1a;
+        }
+
+        body.dark-mode .skills-header p {
+            color: #b0b0b0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .skills-page {
+                padding-top: 100px;
+            }
+
+            .skills-header h1 {
+                font-size: 2rem;
+            }
+
+            .expertise-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .tool-icon {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">AteShiela</div>
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="index.html"><i class="fa-solid fa-house nav-icon" aria-hidden="true"></i>Home</a></li>
+                    <li><a href="index.html#about"><i class="fa-solid fa-user nav-icon" aria-hidden="true"></i>About</a></li>
+                    <li><a href="skills.html" class="active"><i class="fa-solid fa-star nav-icon" aria-hidden="true"></i>Skills</a></li>
+                    <li><a href="index.html#projects"><i class="fa-solid fa-briefcase nav-icon" aria-hidden="true"></i>Projects</a></li>
+                    <li><a href="resume.html"><i class="fa-solid fa-file-pdf nav-icon" aria-hidden="true"></i>Resume</a></li>
+                    <a href="index.html#contact" class="nav-contact"><i class="fa-solid fa-envelope nav-icon" aria-hidden="true"></i>Contact</a>
+                </ul>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Skills Page Content -->
+    <section class="skills-page">
+        <div class="skills-container">
+            <div class="skills-header">
+                <h1>My Skills</h1>
+                <p>A comprehensive overview of my design expertise and technical tools</p>
+            </div>
+
+            <!-- Design Expertise -->
+            <div class="skills-section">
+                <h2 class="skills-section-title">Design Expertise</h2>
+                <div class="expertise-grid">
+                    <div class="expertise-card">
+                        <h3>🎨 Branding & Logo Design</h3>
+                        <p>Creating unique and memorable brand identities, logos, and visual styles that resonate with target audiences.</p>
+                    </div>
+                    <div class="expertise-card">
+                        <h3>💌 Invitations & Stationery</h3>
+                        <p>Designing elegant and personalized invitations, business cards, and stationery materials for various occasions.</p>
+                    </div>
+                    <div class="expertise-card">
+                        <h3>📖 Journal & Publication Layout</h3>
+                        <p>Managing typography, imagery, and layout design to create professional and visually appealing publications.</p>
+                    </div>
+                    <div class="expertise-card">
+                        <h3>📱 Social Media Graphics</h3>
+                        <p>Creating engaging and on-brand social media content that increases engagement and captures audience attention.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tools & Technologies -->
+            <div class="skills-section">
+                <h2 class="skills-section-title">Tools & Technologies</h2>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fab fa-figma"></i>
+                        </div>
+                        <div class="tool-name">Figma</div>
+                        <div class="tool-description">UI/UX Design & Prototyping</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fab fa-html5"></i>
+                        </div>
+                        <div class="tool-name">HTML & CSS</div>
+                        <div class="tool-description">Web Development</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <div class="tool-name">Photoshop</div>
+                        <div class="tool-description">Image Editing & Design</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <div class="tool-name">Canva</div>
+                        <div class="tool-description">Quick Design & Templates</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 AteShiela. All rights reserved.</p>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" id="scrollTop">↑</div>
+
+    <script>
+        // Dark Mode Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        
+        // Set initial theme
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeToggle.classList.add('dark-mode');
+            themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+        } else {
+            document.body.classList.remove('dark-mode');
+            themeToggle.classList.remove('dark-mode');
+            themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            themeToggle.classList.toggle('dark-mode');
+            
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+            
+            // Update icon
+            themeToggle.innerHTML = isDarkMode 
+                ? '<i class="fa-solid fa-sun"></i>' 
+                : '<i class="fa-solid fa-moon"></i>';
+        });
+
+        // Scroll to Top Button
+        const scrollTop = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 100) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        }, { passive: true });
+
+        scrollTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        }, { passive: true });
+    </script>
+</body>
+</html>

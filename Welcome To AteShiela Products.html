@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome  To AteShiela Products</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('p2.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .landing-container {
+            background: linear-gradient(135deg, #b9f6ca 0%, #81c784 100%);
+            padding: 50px 40px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            max-width: 600px;
+        }
+        h1 {
+            font-size: 42px;
+            color: #0f5132;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        p {
+            font-size: 16px;
+            color: #1a1a1a;
+            margin-bottom: 40px;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.2);
+            line-height: 1.6;
+        }
+        .btn {
+            display: inline-block;
+            padding: 16px 45px;
+            margin: 12px 8px;
+            font-size: 15px;
+            font-weight: 700;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.2);
+            transition: all 0.35s ease;
+            z-index: -1;
+        }
+        .btn:hover::before {
+            left: 100%;
+        }
+        .btn-login {
+            background: linear-gradient(135deg, #81c784 0%, #66bb6a 100%);
+            color: #ffffff;
+        }
+        .btn-login:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(81,195,132,0.45);
+            background: linear-gradient(135deg, #66bb6a 0%, #558b56 100%);
+        }
+        .btn-register {
+            background: linear-gradient(135deg, #b9f6ca 0%, #a5d6a7 100%);
+            color: #0f5132;
+            border: 2px solid rgba(15,81,50,0.2);
+        }
+        .btn-register:hover {
+            background: linear-gradient(135deg, #81c784 0%, #66bb6a 100%);
+            color: #ffffff;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(81,195,132,0.45);
+            border-color: #81c784;
+        }
+    </style>
+</head>
+<body>
+    <div class="landing-container">
+        <h1>Welcome to AteShiela Products</h1>
+        <p>Manage your products easily. Login to continue or register a new account.</p>
+        <a href="login.php" class="btn btn-login">Login</a>
+        <a href="register.php" class="btn btn-register">Register</a>
+    </div>
+</body>
+</html>
